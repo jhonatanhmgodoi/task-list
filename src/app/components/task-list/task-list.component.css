@@ -1,0 +1,63 @@
+section {
+  display: flex;
+  flex-direction: column;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.7rem;
+}
+
+th, td, tr {
+  font-family: 'Roboto';
+  font-size: 20px;
+
+  border-bottom: 0.1rem solid black;
+  text-align: center;
+  padding: 6px 0px;
+}
+
+th {
+  font-weight: 600;
+  line-height: 10.55px;
+}
+
+.button-delete {
+  display: flex;
+  justify-self: center;
+  align-items: end;
+
+  border: none;
+  cursor: pointer;
+  background-color: white;
+}
+
+.button-delete img {
+  width: 20px;
+  height: 20px;
+
+}
+
+input {
+  width: 18px;
+  height: 18px;
+}
+
+button {
+  width: 145px;
+  height: 27px;
+  border: none;
+  border-radius: 5px;
+
+  font-family: 'Inter';
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 14.52px;
+  text-align: center;
+
+  background-color: #4EC729;
+  color: white;
+
+  cursor: pointer;
+}

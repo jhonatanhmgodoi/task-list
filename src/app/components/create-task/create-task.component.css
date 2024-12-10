@@ -1,0 +1,11 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.mensagem_erro {
+  font-family: 'Roboto';
+  font-size: 0.5rem;
+  font-weight: 600;
+  line-height: 10.55px;
+}

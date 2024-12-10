@@ -1,0 +1,14 @@
+html {
+  font-size: 62,5%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+body, html {
+  height: 100vh; /*para ocupar toda a viewport, toda a tela do navegador*/
+  box-sizing: border-box; /*os elementos filhos não passarão o body*/
+}

@@ -1,0 +1,31 @@
+<section class="creat-task-container">
+  <button mat-fab extended (click)="closeDialog()">
+    <mat-icon fontIcon="close"></mat-icon>
+  </button>
+
+  <form [formGroup]="form">
+    <label for="status">Descrição</label>
+    <input type="textarea" class="input" id="status" formControlName="description">
+    @if (form.get('description')?.errors &&  form.get('description')?.touched) {
+      <div class="mensagem_erro">
+        Descrição é obrigatório!
+      </div>
+    }
+
+    <label for="status">Previsão</label>
+    <input type="textarea" class="input" id="status" formControlName="dueDate">
+    @if(form.get('dueDate')?.errors &&  form.get('dueDate')?.touched){
+      <div class="mensagem_erro">
+        Formato inválido!
+      </div>
+    }
+
+    <label for="status">Status</label>
+    <input type="textarea" class="input" id="status" formControlName="status">
+    @if(form.get('status')?.errors &&  form.get('status')?.touched) {
+      <div class="mensagem_erro">
+        Status é obrigatório!
+      </div>
+    }
+  </form>
+</section>
