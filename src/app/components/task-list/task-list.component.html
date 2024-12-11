@@ -1,30 +1,45 @@
-<section>
-  <button (click)="openDialog()">ADICIONAR</button>
-  <table>
-    <tr>
-      <th></th>
-      <th>TÍTULO</th>
-      <th>PREVISÃO</th>
-      <th>STATUS</th>
-    </tr>
-    @for (item of taskList; track item.id) {
-      <tr>
-        <td><input
-          type="checkbox"
-          name="select-row-{{item.id}}"
-          id="select-row-{{item.id}}"
-        ></td>
-        <td>{{item.description}}</td>
-        <td>{{item.dueDate}}</td>
-        <td>{{item.status}}</td>
-        <td>
-          <button class="button-delete" (click)="deleteTask(item.id)">
-            <img src="delete-icon.png" alt="deletar linha.">
-          </button>
-        </td>
-      </tr>
-    } @empty {
-      <h3>Nenhum tarefa registrada.</h3>
-    }
-  </table>
-</section>
+<button (click)="openDialog()" class="add-task">ADICIONAR</button>
+
+
+<table mat-table [dataSource]="taskList">
+  <ng-container matColumnDef="checked">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <input type="checkbox"
+        [(ngModel)]="element.isChecked"
+      >
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <th mat-header-cell *matHeaderCellDef>TÍTULO</th>
+    <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>STATUS</th>
+    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="dueDate">
+    <th mat-header-cell *matHeaderCellDef>PREVISÃO</th>
+    <td mat-cell *matCellDef="let element"> {{element.dueDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button (click)="deleteTask(element.id)" class="button-delete">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </td>
+
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+    [ngClass]="{'highlight-row': row.isChecked}"
+  ></tr>
+
+</table>
