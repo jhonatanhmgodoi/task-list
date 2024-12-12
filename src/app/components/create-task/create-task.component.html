@@ -3,20 +3,20 @@
     <mat-icon fontIcon="close"></mat-icon>
   </button>
 
-  <form [formGroup]="form">
-    <label for="status">Descrição</label>
-    <input type="textarea" class="input" id="status" formControlName="description">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <label for="description">Descrição</label>
+    <input type="textarea" class="input" id="description" formControlName="description">
     @if (form.get('description')?.errors &&  form.get('description')?.touched) {
       <div class="mensagem_erro">
         Descrição é obrigatório!
       </div>
     }
 
-    <label for="status">Previsão</label>
-    <input type="textarea" class="input" id="status" formControlName="dueDate">
+    <label for="dueDate">Previsão</label>
+    <input type="textarea" class="input" id="dueDate" formControlName="dueDate">
     @if(form.get('dueDate')?.errors &&  form.get('dueDate')?.touched){
       <div class="mensagem_erro">
-        Formato inválido!
+        Formato inválido! Formato correto: DD/MM/AAAA
       </div>
     }
 
@@ -27,5 +27,7 @@
         Status é obrigatório!
       </div>
     }
+
+    <button type="submit" [disabled]="form.invalid">SALVAR</button>
   </form>
 </section>

@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { TaskListService } from '../task-list/task-list.service';
+import { TaskList } from '../task-list/interfaces/task-list-interface';
 
 @Component({
   selector: 'app-create-task',
@@ -14,8 +16,15 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class CreateTaskComponent implements OnInit {
   form!: FormGroup
+  task: TaskList = {
+    id: 150,
+    status: 'PENDNTE',
+    description: '',
+    dueDate: ''
+  }
 
   constructor(
+    private readonly service: TaskListService,
     private formBuilder: FormBuilder,
     public dialogRef: MatDialogRef<'Caixa fechada'>
   ) {}
@@ -38,10 +47,17 @@ export class CreateTaskComponent implements OnInit {
     })
   }
 
+  onSubmit() {
+    if (this.form.valid) {
+      this.task = this.form.value
+      this.service.add(this.task).subscribe((newTask) => {
+        this.closeDialog(newTask)
+      })
+    }
+  }
 
-
-  closeDialog() {
-    this.dialogRef.close()
+  closeDialog(dialogResult?: any) {
+    this.dialogRef.close(dialogResult)
   }
 
 }

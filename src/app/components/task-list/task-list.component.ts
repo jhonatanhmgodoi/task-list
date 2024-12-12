@@ -34,9 +34,16 @@ export class TaskListComponent implements OnInit {
   }
 
   openDialog(): void {
-    this.dialog.open(CreateTaskComponent, {
+    const dialogRef = this.dialog.open(CreateTaskComponent, {
       height: '300px',
       width: '800px'
+    })
+
+    dialogRef.afterClosed().subscribe((newTask: TaskList) => {
+      if (newTask) {
+        this.taskList.push(newTask)
+        this.taskList = [...this.taskList]
+      }
     })
   }
 
