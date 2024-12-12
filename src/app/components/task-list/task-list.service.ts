@@ -15,9 +15,9 @@ export class TaskListService {
     return this.http.get<TaskList[]>(this.api)
   }
 
-  // add(): Observable<TaskList> {}
-
-  // update(): Observable<TaskList> {}
+  add(task: TaskList): Observable<TaskList> {
+    return this.http.post<TaskList>(this.api, task)
+  }
 
   delete(id: number): Observable<TaskList> {
     const url = `${this.api}/${id}`
